@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import ActionButtonGroup from './ActionButtonGroup'
-import AddItemForm from './AddItemForm'
+import { getDataFromLS, saveDataToLS } from '../utils/LocalStorge'
 import Footer from './Footer'
 import Header from './Header'
-import PackingList from './PackingList'
-import { getDataFromLS, saveDataToLS } from '../utils/LocalStorge'
+import PackingList from './packing-list/PackingList'
+import Sidebar from './sidebar/Sidebar'
 
 export const defaultItems = [
   {
@@ -84,14 +83,12 @@ export default function TrekBag() {
           onUpdateSingleItem={handleUpdateSingleItem}
           onDeleteItem={handleDeleteItem}
         />
-        <div className='sidebar'>
-          <AddItemForm onAddItem={handleAddItem} />
-          <ActionButtonGroup
-            onChangeAllStatus={handleChangeAllStatus}
-            onResetItems={resetItemsToInitial}
-            onRemoveItems={removeAllItems}
-          />
-        </div>
+        <Sidebar
+          handleAddItem={handleAddItem}
+          handleChangeAllStatus={handleChangeAllStatus}
+          removeAllItems={removeAllItems}
+          resetItemsToInitial={resetItemsToInitial}
+        />
       </main>
       <Footer />
     </>
